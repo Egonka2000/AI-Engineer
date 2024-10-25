@@ -20,7 +20,6 @@ class MySocket:
         start_time = datetime.strptime(s_time, "%Y-%m-%dT%H:%M:%S.%f")
 
         while True:
-            time.sleep(0.1)
             e_time = self.receive()
             end_time = datetime.strptime(e_time, "%Y-%m-%dT%H:%M:%S.%f")
             elapsed_time = round((end_time - start_time).total_seconds(), 1)
