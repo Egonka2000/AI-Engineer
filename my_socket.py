@@ -37,13 +37,13 @@ class MySocket:
                 print(output)
 
     def receive(self) -> str:
-        local_buffer = b''
+        local_buffer = self.temp_buffer
         while b'\n' not in local_buffer:
             chunk = self.sock.recv(1024)
             if not chunk:
                 raise RuntimeError("socket connection broken")
             self.buffer += chunk
-            local_buffer += self.temp_buffer + chunk
+            local_buffer += chunk
 
         message, self.temp_buffer = local_buffer.split(b'\n', 1)
         
